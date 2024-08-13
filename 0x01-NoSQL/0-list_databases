@@ -1,4 +1,2 @@
 // 0-list_databases
-db.getMongo().getDBs().databases.forEach(function(d) {
-    print(d.name + "\t" + d.sizeOnDisk / 1024 / 1024 / 1024 + "GB");
-});
+show dbs
