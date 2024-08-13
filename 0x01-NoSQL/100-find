@@ -1,0 +1,12 @@
+#!/usr/bin/env mongo
+/**
+ * Script to find all documents with name starting by "Holberton" in the collection school.
+ */
+
+var db = connect("mongodb://127.0.0.1:27017/" + (db.getName() || "my_db"));
+
+// Define the query to match names starting with "Holberton"
+var query = { name: /^Holberton/ };
+
+// Execute the query and print matching documents
+db.school.find(query).forEach(printjson);

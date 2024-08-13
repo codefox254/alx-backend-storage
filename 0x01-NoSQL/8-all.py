@@ -1,13 +1,26 @@
-from pymongo import MongoClient
+#!/usr/bin/env python3
+"""
+Module for listing all documents in a MongoDB collection.
+"""
+
 
 def list_all(mongo_collection):
     """
-    List all documents in a collection.
+    Lists all documents in a collection.
 
-    :param mongo_collection: The pymongo collection object.
-    :return: A list of all documents in the collection. Returns an empty list if no documents are found.
+    Args:
+        mongo_collection: The pymongo collection object.
+
+    Returns:
+        A list of formatted dictionaries where each dictionary contains
+        the ObjectId and the 'name' field of a document. Returns an empty
+        list if no documents are found.
     """
-    # Retrieve all documents from the collection
-    documents = list(mongo_collection.find())
-    
-    return documents
+    documents = mongo_collection.find()
+    result = []
+    for doc in documents:
+        result.append({
+            "_id": doc["_id"],
+            "name": doc.get("name", "")
+        })
+    return result
